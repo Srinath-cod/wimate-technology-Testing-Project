@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="wimate">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="21"/>
+    <property name="source" value="21"/>
+    <path id="TestNG.libraryclasspath">
+        <pathelement location="C:/Users/D E L L/.p2/pool/plugins/org.testng_7.11.0.r202503091654.jar"/>
+        <pathelement location="C:/Users/D E L L/.p2/pool/plugins/com.beust.jcommander_1.83.0.jar"/>
+        <pathelement location="C:/Users/D E L L/.p2/pool/plugins/slf4j.api_2.0.17.jar"/>
+        <pathelement location="C:/Users/D E L L/.p2/pool/plugins/org.yaml.snakeyaml_2.2.0.jar"/>
+        <pathelement location="C:/Users/D E L L/.p2/pool/plugins/org.webjars.jquery_3.7.1.jar"/>
+    </path>
+    <path id="wimate.classpath">
+        <path refid="TestNG.libraryclasspath"/>
+        <pathelement location="bin"/>
+        <pathelement location="jars/selenium-server-4.43.0.jar"/>
+        <pathelement location="jars/batik-xml-1.14.jar"/>
+        <pathelement location="jars/bcpkix-jdk15on-1.70.jar"/>
+        <pathelement location="jars/bcprov-jdk15on-1.70.jar"/>
+        <pathelement location="jars/bcutil-jdk15on-1.70.jar"/>
+        <pathelement location="jars/commons-codec-1.15.jar"/>
+        <pathelement location="jars/commons-collections4-4.4.jar"/>
+        <pathelement location="jars/commons-compress-1.21.jar"/>
+        <pathelement location="jars/commons-io-2.11.0.jar"/>
+        <pathelement location="jars/commons-logging-1.2.jar"/>
+        <pathelement location="jars/commons-math3-3.6.1.jar"/>
+        <pathelement location="jars/curvesapi-1.07.jar"/>
+        <pathelement location="jars/fontbox-2.0.26.jar"/>
+        <pathelement location="jars/graphics2d-0.40.jar"/>
+        <pathelement location="jars/jakarta.activation-2.0.1.jar"/>
+        <pathelement location="jars/jakarta.xml.bind-api-3.0.1.jar"/>
+        <pathelement location="jars/log4j-api-2.18.0.jar"/>
+        <pathelement location="jars/pdfbox-2.0.26.jar"/>
+        <pathelement location="jars/poi-5.2.3.jar"/>
+        <pathelement location="jars/poi-examples-5.2.3.jar"/>
+        <pathelement location="jars/poi-excelant-5.2.3.jar"/>
+        <pathelement location="jars/poi-javadoc-5.2.3.jar"/>
+        <pathelement location="jars/poi-ooxml-5.2.3.jar"/>
+        <pathelement location="jars/poi-ooxml-full-5.2.3.jar"/>
+        <pathelement location="jars/poi-ooxml-lite-5.2.3.jar"/>
+        <pathelement location="jars/poi-scratchpad-5.2.3.jar"/>
+        <pathelement location="jars/slf4j-api-1.7.36.jar"/>
+        <pathelement location="jars/SparseBitSet-1.2.jar"/>
+        <pathelement location="jars/xml-apis-1.4.01.jar"/>
+        <pathelement location="jars/xml-apis-ext-1.3.04.jar"/>
+        <pathelement location="jars/xmlbeans-5.1.1.jar"/>
+        <pathelement location="jars/xmlgraphics-commons-2.6.jar"/>
+        <pathelement location="jars/xmlsec-3.0.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="wimate.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>
